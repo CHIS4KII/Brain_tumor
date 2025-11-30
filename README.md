@@ -32,12 +32,12 @@ HTML5 & CSS3: For structuring and styling the responsive web frontend.
 Installation and Setup (Local Development)
 To get NeuroScan up and running on your local machine, follow these steps:
 
-1. # Clone the Repository
+# 1. Clone the Repository
 code
 Bash
 git clone https://github.com/CHIS4KII/Brain_tumor.git
 cd brain-tumor-detection
-2. # Set up Python Environment
+# 2. Set up Python Environment
 Create and activate a virtual environment (highly recommended for dependency management):
 code
 Bash
@@ -52,13 +52,13 @@ Bash
 pip install Flask tensorflow numpy opencv-python-headless
 (Note: opencv-python-headless is used for server environments to avoid GUI dependencies.)
 
-3. # Place Your Trained Model
+# 3. Place Your Trained Model
 Ensure your trained Keras model file, brain_tumor_detection_vgg16.h5, is located in the root directory of the project, next to app.py. If it's elsewhere, update the MODEL_PATH in app.py.
 
-4. # Create static and templates Folders
+# 4. Create static and templates Folders
 Make sure you have the static and templates folders as described in the Folder Structure section, and place index.html, mri_hero.jpg, and upload.png in their respective locations.
 
-5. # Run the Flask Application
+# 5. Run the Flask Application
 From the root directory of your project, run the Flask application:
 code
 Bash

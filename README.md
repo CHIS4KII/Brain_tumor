@@ -34,7 +34,7 @@ To get NeuroScan up and running on your local machine, follow these steps:
 1. Clone the Repository
 code
 Bash
-git clone https://github.com/your-username/brain-tumor-detection.git
+git clone https://github.com/CHIS4KII/brain-tumor-detection.git
 cd brain-tumor-detection
 2. Set up Python Environment
 Create and activate a virtual environment (highly recommended for dependency management):

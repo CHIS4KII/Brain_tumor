@@ -19,4 +19,4 @@ Users can upload an MRI image through a clean interface, receive an immediate pr
 ## Demo
 
 Here's an example of NeuroScan in action:
-`![Alt text](images/image.png)
+`![Alt text](image.png)

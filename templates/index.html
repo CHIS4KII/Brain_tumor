@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Tumor Detection – NeuroScan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        background: #ffffff;
+        font-family: "Poppins", sans-serif;
+        color: #111;
+    }
+
+    .nav {
+        padding: 22px 60px;
+        font-size: 24px;
+        font-weight: 600;
+        border-bottom: 1px solid #eee;
+    }
+
+    .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 70px 60px;
+    }
+
+    .hero-title {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .steps {
+        margin-top: 28px;
+        font-size: 17px;
+        line-height: 1.9;
+        color: #444;
+    }
+
+    .hero-img {
+        width: 420px;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.07);
+    }
+
+    .upload-box {
+        margin: 40px auto;
+        width: 560px;
+        padding: 45px;
+        border: 2px dashed #ccc;
+        border-radius: 18px;
+        text-align: center;
+        transition: .2s;
+        cursor: pointer;
+    }
+
+    .upload-box:hover {
+        border-color: #111;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    button {
+        margin-top: 35px;
+        background: #111;
+        color: #fff;
+        padding: 15px 38px;
+        border: none;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+    button:hover {
+        opacity: .85;
+    }
+
+    .result-section {
+        margin: 70px auto;
+        width: 900px;
+        text-align: center;
+    }
+
+    .prediction-box {
+        font-size: 32px;
+        font-weight: 700;
+        background: #111;
+        color: #fff;
+        padding: 16px 40px;
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .confidence {
+        font-size: 22px;
+        margin-top: 12px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .image-row {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin-top: 35px;
+        flex-wrap: wrap;
+    }
+
+    .img-card {
+        text-align: center;
+    }
+
+    .img-card img {
+        width: 350px;
+        border-radius: 8px;
+        box-shadow: 0 0 14px rgba(0,0,0,0.12);
+    }
+
+    .img-title {
+        margin-top: 12px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #444;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 70px;
+        padding: 30px;
+        color: #777;
+        font-size: 15px;
+    }
+</style>
+</head>
+<body>
+
+<div class="nav">🧠 NeuroScan | Medical AI</div>
+
+<div class="hero">
+    <div>
+        <div class="hero-title">Brain Tumor Detection System</div>
+        <div class="steps">
+            <b>1.</b> Upload your MRI scan (JPG / PNG)<br>
+            <b>2.</b> Deep learning CNN analyzes the scan in real-time<br>
+            <b>3.</b> Get a medical-grade prediction with confidence scoring
+        </div>
+    </div>
+    <img src="{{ url_for('static', filename='mri_hero.jpg') }}" class="hero-img" alt="">
+</div>
+
+<h2 style="text-align:center; margin-top: 15px;">Ready to Analyze?</h2>
+<p style="text-align:center; margin-bottom: 20px;">Upload an MRI scan to perform tumor localization & prediction</p>
+
+<form method="POST" enctype="multipart/form-data">
+    <label class="upload-box">
+        <img src="{{ url_for('static', filename='upload.png') }}" width="70"><br><br>
+        <span style="font-size: 18px;">Click to browse MRI image</span>
+        <input type="file" name="image" required>
+    </label>
+    <div style="text-align:center">
+        <button type="submit">Analyze Scan</button>
+    </div>
+</form>
+
+{% if prediction %}
+<div class="result-section">
+    <div class="prediction-box">{{ prediction }}</div>
+    <div class="confidence">Confidence Score: <b>{{ confidence }}%</b></div>
+
+    <div class="image-row">
+        <div class="img-card">
+            <img src="{{ image }}" alt="">
+            <div class="img-title">Uploaded MRI Scan</div>
+        </div>
+
+        {% if overlay_image %}
+        <div class="img-card">
+            <img src="{{ overlay_image }}" alt="">
+            <div class="img-title">Tumor Heatmap (Grad-CAM)</div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<footer>⚕ Powered by VGG16 Deep Learning & Flask — NeuroScan © 2025</footer>
+
+</body>
+</html>
